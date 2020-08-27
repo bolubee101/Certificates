@@ -42,5 +42,5 @@ email: string
         success: false,
         message: "certificate has been downloaded",
 }
-
+// User would be prompted to download if there are no errors
 ```
