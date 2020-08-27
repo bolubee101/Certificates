@@ -1,0 +1,21 @@
+{
+  "name": "certificator",
+  "version": "1.0.0",
+  "description": "Backend to generate certificates",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app",
+    "seed": "node dummy"
+  },
+  "author": "Lord Bee",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28",
+    "pdfkit": "^0.11.0"
+  }
+}
