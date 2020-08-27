@@ -95,18 +95,19 @@ section input[type=text] {
     width: 15rem;
     margin-top: 1.5rem;
     text-align: center;
+    transition: all 0.3s ease-in;
 }
 
 #button-id:hover{
-    color: #6aa3ff;
+    background-color: #5596ff;
 }
 
 #button-id:focus{
-    color: #1c73ff;
+    background-color: #1c73ff;
 }
 
 #button-id:active{
-    color: #2a7cff;
+    background-color: #2a7cff;
 }
 
 section>div {
