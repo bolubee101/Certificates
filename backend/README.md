@@ -5,7 +5,7 @@ npm install
 
 npm run seed(needs only to be run the first time setting up to fill mongodb with user data)
 
-routes
+endpoints(all endpoints are POST endpoints all data is JSON)
 
 "/EmailCheck"
 ```
