@@ -80,6 +80,12 @@ p {
 /* 
     main section edits
 */
+img{
+    width: 35rem;
+    position: absolute;
+    bottom: 5rem;
+    height: auto;
+}
 section input[type=text] {
     font-size: 1.5rem;
     padding: 2.0625rem;
@@ -89,6 +95,18 @@ section input[type=text] {
     width: 15rem;
     margin-top: 1.5rem;
     text-align: center;
+}
+
+#button-id:hover{
+    color: #6aa3ff;
+}
+
+#button-id:focus{
+    color: #1c73ff;
+}
+
+#button-id:active{
+    color: #2a7cff;
 }
 
 section>div {
@@ -114,6 +132,9 @@ section #email-input {
 }
 
 @media screen and (min-width: 75rem) {
+    img{
+        bottom: 8rem;
+    }
     main{
         display: flex;
         justify-content: center;
