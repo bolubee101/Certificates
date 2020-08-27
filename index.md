@@ -7,6 +7,9 @@
     <body>
         <main>
             <section>
+
+                <img src="Images/hero-dsc-about-unilag.png" alt="dsc logo"/>
+                
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="170" height="1125" viewBox="0 0 170 1125">
                     <defs>
                       <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 149 72">
@@ -33,7 +36,7 @@
                   
                 <div>
                     <h1 id="first-text">Email Verification</h1>
-                    <p id="second-text">Hi there, please enter your e-mail to get verified</p>
+                    <p id="second-text">Hi there! please enter your e-mail to get verified</p>
                     
                     <section id="email-input">
                         <input type="text"  id="input-text" placeholder="Enter your e-mail">

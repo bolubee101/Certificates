@@ -83,7 +83,7 @@ p {
 img{
     width: 35rem;
     position: absolute;
-    bottom: 5rem;
+    bottom: 9rem;
     height: auto;
 }
 section input[type=text] {
@@ -134,7 +134,7 @@ section #email-input {
 
 @media screen and (min-width: 75rem) {
     img{
-        bottom: 8rem;
+        bottom: 12rem;
     }
     main{
         display: flex;
