@@ -5,7 +5,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const config = require("./config/database");
 const User = require("./models/users");
-const certificator=require("./certificator");
+const certificator = require("./certificator");
 // connect to database
 mongoose.connect(config.database, {
   useNewUrlParser: true,
