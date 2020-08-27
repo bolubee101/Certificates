@@ -2,13 +2,13 @@
 /* 
     Defaults for home page
 */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,11 +19,12 @@ body{
     --font: 'Open Sans', sans-serif;
 }
 
-main{
+main {
     width: 100%;
 }
 
-main > section, section #email-input{
+main>section,
+section #email-input {
     display: flex;
     position: relative;
     justify-content: center;
@@ -32,82 +33,119 @@ main > section, section #email-input{
     width: 100%;
 }
 
-main > section{
+main>section {
     margin: calc(0.5*(100vh - 300px)) 0px;
 }
 
-button
-{
-    background-color : var(--color);
+button {
+    background-color: var(--color);
     color: white;
-    text-align: center !important;
+    text-align: center;
 }
 
-input,button
-{
+input,
+button {
     width: 90%;
     height: 72px;
     text-align: left;
-    line-height: inherit!important;
-    border: 2px solid var(--color) !important;
-    border-radius: .2rem !important;
+    line-height: inherit;
+    border: 2px solid var(--color);
+    border-radius: .2rem;
     font-family: var(--font);
     font-size: 24px;
-    box-sizing: border-box;
 }
 
-input:focus,button:focus,input:active{
-    border: 1px solid var(--color) !important;
+input:focus,
+button:focus,
+input:active {
+    border: 1px solid var(--color);
 }
 
-h1
-{
+h1 {
     font-family: var(--font);
     font-size: 2.5rem;
     text-align: center;
     line-height: 4.065rem;
-    color : var(--color);
+    color: var(--color);
 }
 
-p
-{
+p {
     font-family: var(--font);
     font-size: 1.425rem;
     line-height: 2.875rem;
     text-align: center;
-    color : #000000;
+    color: #707070;
 }
 
 /* 
     main section edits
 */
-section input[type=text]{
+section input[type=text] {
     font-size: 1.5rem;
     padding: 2.0625rem;
 }
 
-#button-id{
+#button-id {
     width: 15rem;
     margin-top: 1.5rem;
+    text-align: center;
 }
 
-section > div {
+section>div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-section > div p{
+section>div p {
     width: 100%;
     text-align: center;
     margin: 0.5rem 0rem 3.2rem 0rem;
 }
-section svg{
+
+section svg {
     position: absolute;
     left: -7.3rem;
 }
 
-section #email-input{
+section #email-input {
     width: 90%;
+}
+
+@media screen and (min-width: 75rem) {
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main section{
+        width: 80%;
+    }
+    section svg{
+        left: -16rem;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 2rem;
+    }
+    section input{
+        width: 100%;
+    }
+    section #email-input,
+    #button-id {
+        width: 80%;
+    }
+
+    #button-id {
+        margin-top: 2rem;
+    }
+
+    section>div p {
+        margin: 1rem 0rem 5rem 0rem;
+    }
 }
