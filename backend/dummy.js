@@ -48,14 +48,14 @@ let Users=[
 
 for(i in Users){
     let newUser= new User(Users[i]);
- newUser.save((err,user)=>{
-     if(err){
-         console.log(err);
-     }else{
-         console.log(user["First Name"],"has been logged")
-     }
-     if(i==Users.length-1){
-        db.close();
-     }
+    newUser.save((err,user)=>{
+        if(err){
+           console.log(err);
+        }else{
+           console.log(user["First Name"],"has been logged")
+        }
+        if(i == Users.length - 1){
+           db.close();
+        }
  });
 }
