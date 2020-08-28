@@ -46,7 +46,13 @@ let Users=[
     }
 ]
 
-for(i in Users){
+User.collection.insertMany(Users,(err,docs)=>{
+if(err) throw err;
+else console.log(docs.length)
+db.close()
+})
+
+/*for(i in Users){
     let newUser= new User(Users[i]);
     newUser.save((err,user)=>{
         if(err){
@@ -58,4 +64,4 @@ for(i in Users){
            db.close();
         }
  });
-}
+}*/

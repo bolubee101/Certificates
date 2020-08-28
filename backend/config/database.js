@@ -1,3 +1,3 @@
 module.exports={
-    database:"mongodb://localhost:27017/certificates"
+    database:"mongodb+srv://young:ethene20@cluster0.hgbre.mongodb.net/dscCert?retryWrites=true&w=majority"
 }
