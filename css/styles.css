@@ -87,7 +87,7 @@ img{
     bottom: 9rem;
     height: auto;
 }
-section input[type=text] {
+section input[type=email] {
     font-size: 1.5rem;
     padding: 2.0625rem;
 }
