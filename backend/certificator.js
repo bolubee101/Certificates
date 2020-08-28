@@ -1,16 +1,24 @@
 var fs = require("fs");
 var PDFDocument = require("pdfkit");
-module.exports = (name) => {
+let main = (name) => {
   let length = name.length;
   let x;
-  if (length >= 26) {
-    x = 500;
-  } else {
-    x = 500 + Math.trunc((26 - length) * 10);
+  let font;
+  if (length < 20) {
+    x = 503 + ((28 - length) / 2) * 18.46;
+    console.log(x);
+    font = 30;
   }
-
+  if(length>20){
+    x=503 + ((33.6 - length) / 2) * 15.39;
+    font = 25;
+  }
+  if(length>25){
+    x=528 + ((33.6 - length) / 2) * 15.39;
+    font = 25;
+  }
   var pdf = new PDFDocument({
-    size: "A3", 
+    size: "A3",
     compress: false,
     layout: "potrait",
   });
@@ -18,18 +26,17 @@ module.exports = (name) => {
   pdf.image("image/DSC.png", 0, 0);
 
   // Write stuff into PDF
-  pdf.font("font/Manrope-VariableFont_wght.ttf");
+  pdf.font("font/Product Sans Bold.ttf");
 
-  pdf.fontSize(40);
-  pdf.text(name, x, 280);
-
-  pdf.fontSize(20);
-  pdf.text("27 August, 2020", 825, 480);
+  pdf.fontSize(font);
+  pdf.text(name.toUpperCase(), x, 300);
 
   // Stream contents to a file
-  pdf.pipe(fs.createWriteStream(`certificates/${name}.pdf`)).on("finish", function () {
-    console.log("PDF closed");
-  });
+  pdf
+    .pipe(fs.createWriteStream(`certificates/${name}.pdf`))
+    .on("finish", function () {
+      console.log("PDF closed");
+    });
 
   // Close PDF and write file.
   pdf.end();
