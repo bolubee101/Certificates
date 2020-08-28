@@ -42,8 +42,7 @@ app.post("/generate", (req, res) => {
         success: false,
         message: "User not found",
       });
-    }
-    else {
+    } else {
       if (user.status == 1) {
         res.status(400);
         res.json({
@@ -51,17 +50,18 @@ app.post("/generate", (req, res) => {
           message: "certificate has been downloaded",
         });
       } else {
-        certificator(name);
-        user.status = 1;
-        user.save((err, user) => {
-          if (err) throw err;
-          else {
-            res.status(200);
-            res.download(
-              __dirname + `/certificates/${name}.pdf`,
-              `${name}DSC_certificate`
-            );
-          }
+        certificator(name).then(() => {
+          user.status = 1;
+          user.save((err, user) => {
+            if (err) throw err;
+            else {
+              res.status(200);
+              res.download(
+                __dirname + `/certificates/${name}.pdf`,
+                `${name}DSC_certificate`
+              );
+            }
+          });
         });
       }
     }
