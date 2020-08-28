@@ -32,6 +32,8 @@ section #email-input {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 main>section {
@@ -46,7 +48,7 @@ button {
 
 input,
 button {
-    width: 90%;
+    width: 85%;
     height: 72px;
     text-align: left;
     line-height: inherit;
@@ -86,6 +88,7 @@ img{
     position: absolute;
     bottom: 9rem;
     height: auto;
+    z-index: -1;
 }
 section input[type=email] {
     font-size: 1.5rem;
@@ -126,7 +129,9 @@ section>div p {
 
 section svg {
     position: absolute;
-    left: -7.3rem;
+    left: -11.2rem;
+    height: 140rem;
+    width: 27.9%;
 }
 
 section #email-input {
@@ -134,9 +139,11 @@ section #email-input {
 }
 
 @media screen and (min-width: 75rem) {
+    
     img{
         bottom: 12rem;
     }
+    
     main{
         display: flex;
         justify-content: center;
@@ -148,20 +155,22 @@ section #email-input {
     }
     section svg{
         left: -16rem;
+        width: initial;
+        height: initial;
     }
     h1 {
         font-size: 3rem;
     }
-
+    
     p {
         font-size: 2rem;
     }
     section input{
-        width: 100%;
+        width: 90%;
     }
     section #email-input,
     #button-id {
-        width: 80%;
+        width: 90%;
     }
 
     #button-id {

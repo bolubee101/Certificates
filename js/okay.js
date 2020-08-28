@@ -39,7 +39,7 @@ function verify(okay)
 function ifClicked(){
     let email = document.getElementById('input-text').value;
 
-    let endpoint = "http://localhost:3000/EmailCheck?email=" email;
+    let endpoint = "http://localhost:3000/EmailCheck?email=" + email;
 
     if( !email ){
      document.getElementById('warn').innerHTML = "Please provide a first and last name"
@@ -53,4 +53,4 @@ function ifClicked(){
        http.open("GET", endpoint, false);
        http.send();
     }
- }
+}
