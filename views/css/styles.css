@@ -60,6 +60,11 @@ button {
     font-size: 24px;
 }
 
+#csv{
+    border: none;
+    margin-top: 5rem;    
+}
+
 input:focus,
 button:focus,
 input:active {
@@ -98,21 +103,21 @@ section input[type=email], section input[type=text] {
     padding: 2.0625rem;
 }
 
-#button-id {
+#button-id, .send-button {
     margin-top: 1.5rem;
     text-align: center;
     transition: all 0.3s ease-in;
 }
 
-#button-id:hover {
+#button-id:hover, .send-button:hover {
     background-color: #5596ff;
 }
 
-#button-id:focus {
+#button-id:focus, .send-button:focus {
     background-color: #1c73ff;
 }
 
-#button-id:active {
+#button-id:active, .send-button:active {
     background-color: #2a7cff;
 }
 
@@ -191,11 +196,11 @@ section .form-input {
     }
 
     section .form-input,
-    #button-id {
+    #button-id, .send-button {
         width: 90%;
     }
 
-    #button-id {
+    #button-id, .send-button {
         margin-top: 2rem;
     }
 
