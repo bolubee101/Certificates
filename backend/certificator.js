@@ -2,7 +2,7 @@ var fs = require("fs");
 var PDFDocument = require("pdfkit");
 //module.exports =
 
-let main = (name) => {
+let main = (email,name) => {
   return (myFirstPromise = new Promise((resolve, reject) => {
     let length = name.length;
     let x;
@@ -36,7 +36,7 @@ let main = (name) => {
 
     // Stream contents to a file
     pdf
-      .pipe(fs.createWriteStream(`certificates/${name}.pdf`))
+      .pipe(fs.createWriteStream(`certificates/${email}.pdf`))
       .on("finish", function () {
         console.log("PDF closed");
         resolve();

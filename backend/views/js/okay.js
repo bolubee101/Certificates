@@ -9,7 +9,11 @@ let main = () => {
     }
   }
   let email=data["email"]
+if (email==""){
+  alert("Input a valid email address")
+}else{
   //document.write(name);
-console.log(email)
+  console.log(email)
   location.href=`https://fierce-bastion-56296.herokuapp.com/EmailCheck/?email=${email}`
+}
 };
