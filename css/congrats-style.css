@@ -4,8 +4,8 @@ img {
 }
 
 @media screen and (min-width: 75rem) {
-    img {
+    img {    
         width: 35rem;
-        bottom: 12rem;
+        bottom: 9rem;;
     }
 }
