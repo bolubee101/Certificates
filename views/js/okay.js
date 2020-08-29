@@ -15,7 +15,7 @@ let main = () => {
     //document.write(name);
     if (ValidateEmail(email)) {
       console.log(email)
-      location.href = `https://fierce-bastion-56296.herokuapp.com/EmailCheck/?email=${email}`
+      location.href = `/EmailCheck/?email=${email}`
     }
   }
 };
