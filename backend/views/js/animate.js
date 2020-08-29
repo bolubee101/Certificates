@@ -6,7 +6,7 @@ const text = 'Thank you for all your efforts and work as a member of DSC Unilag!
 const paragraph = document.querySelector("#thanks");
 
 
-function typingAnimation(){
+window.onload = function typingAnimation(){
     if(sunkanmi_temp < text.length){
         paragraph.textContent += text.charAt(sunkanmi_temp);
         sunkanmi_temp++;
