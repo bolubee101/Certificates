@@ -1,0 +1,11 @@
+img {
+    bottom: 2rem;
+    width: 40rem;
+}
+
+@media screen and (min-width: 75rem) {
+    img {    
+        width: 35rem;
+        bottom: 9rem;;
+    }
+}
