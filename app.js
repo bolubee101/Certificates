@@ -24,8 +24,6 @@ const app = express();
 app.use(
   session({
     secret: "secret-key",
-    maxAge  : new Date(Date.now() + 1800000),
-    expires : new Date(Date.now() + 1800000),
     store: new MongoStore({ mongooseConnection: db }),
     resave: false,
     saveUninitialized: false,
