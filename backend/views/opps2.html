@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
 
 <head>
   <title>DSC Unilag</title>
-  <link href="css/styles.css" type="text/css" rel="stylesheet" />
+  <link href="/css/styles.css" type="text/css" rel="stylesheet" />
 </head>
 
 <body>
   <main>
     <section>
-      <img src="Images/hero-dsc-about-unilag.png" alt="dsc logo" />
+
+      <img src="/Images/hero-dsc-about-unilag.png" alt="dsc logo" />
 
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="170" height="1125"
         viewBox="0 0 170 1125">
@@ -52,59 +53,14 @@
       </svg>
 
       <div>
-        <h1 id="first-text">Generate your Certificate</h1>
-        <p id="second-text">
-          Hi there! please enter the name you want to appear on your
-          certificate
-        </p>
-
-        <form action="https://fierce-bastion-56296.herokuapp.com/generate2" method="POST" id="name">
-          <input name="name" type="text" id="input-text" placeholder="Enter your name" />
-        </form>
-        <button id="button-id" type="button" onclick="return main()">
-          Generate
-        </button>
+        <h1 id="first-text">Oops! You have already generated a certificate</h1>
+        <p id="second-text">download here</p>
+         <button id="button-id" onclick="window.location.href='https://fierce-bastion-56296.herokuapp.com/download'") >Download</button>
+        
       </div>
     </section>
   </main>
-  <script>
-
-    let form = document.getElementById("name");
-
-    let main = () => {
-      var data = {};
-      for (var i = 0, ii = form.length; i < ii; ++i) {
-        var input = form[i];
-        if (input.name) {
-          data[input.name] = input.value;
-        }
-      }
-      if (data["name"] == "") {
-        alert("input a valid name");
-      } else {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "https://fierce-bastion-56296.herokuapp.com/generate", true);
-        xhttp.setRequestHeader("Content-Type", "application/json");
-        xhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            if (JSON.parse(this.responseText).success == true) {
-              window.open(
-                `https://fierce-bastion-56296.herokuapp.com/download`,
-                '_blank' // <- This is what makes it open in a new window.
-              );
-              location.href = "https://fierce-bastion-56296.herokuapp.com/congrats"
-            } else {
-              location.href = "https://fierce-bastion-56296.herokuapp.com/oops"
-            }
-          }
-        };
-        console.log(data);
-
-        xhttp.send(JSON.stringify(data));
-      }
-
-    }
-  </script>
+  <script src="js/okay.js"></script>
 </body>
 
 </html>

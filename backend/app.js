@@ -54,9 +54,14 @@ app.get("/EmailCheck", (req, res) => {
       res.status(400);
       res.sendFile(__dirname + "/views/opps.html");
     } else {
-      req.session.status = true;
-      req.session.email = email;
-      res.redirect("/generatorPage");
+      if (user.status == 1) {
+        req.session.email = email;
+        res.redirect("/download");
+      }else{
+        req.session.status = true;
+        req.session.email = email;
+        res.redirect("/generatorPage");
+      }
     }
   });
 });
@@ -90,7 +95,7 @@ app.post("/generate", (req, res) => {
       });
     } else {
       if (req.session.status == true) {
-        certificator(name).then(() => {
+        certificator(email,name).then(() => {
           user.status = 1;
           user.save((err, user) => {
             if (err) throw err;
@@ -113,13 +118,13 @@ app.post("/generate", (req, res) => {
 });
 
 app.get("/download", (req, res) => {
-  if (req.session.name == "" || !req.session.name) {
+  if (req.session.email == "" || !req.session.email) {
     res.redirect("/");
   } else {
     res.status(200);
     res.download(
-      __dirname + `/certificates/${req.session.name}.pdf`,
-      `${req.session.name}DSC_certificate.pdf`
+      __dirname + `/certificates/${req.session.email}.pdf`,
+      `DSC_certificate.pdf`
     );
   }
 });
@@ -130,6 +135,11 @@ app.get("/congrats", (req, res) => {
     res.redirect("/");
   }
 });
+
+app.get("/oops",(req,res)=>{
+  res.sendFile(__dirname+"/views/opps2.html");
+})
+
 app.use("/", users);
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
