@@ -68,6 +68,7 @@
     </section>
   </main>
   <script>
+
     let form = document.getElementById("name");
 
     let main = () => {
@@ -78,13 +79,26 @@
           data[input.name] = input.value;
         }
       }
-      let name=data["name"].split(" ").join("+");
-    
 
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "https://fierce-bastion-56296.herokuapp.com/generate", true);
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     if(JSON.parse(this.responseText).success==true){
       window.open(
-    `https://fierce-bastion-56296.herokuapp.com/generate/?name=${name}`,
+    `https://fierce-bastion-56296.herokuapp.com/download`,
     '_blank' // <- This is what makes it open in a new window.
-  );
+  ); 
+  location.href="https://fierce-bastion-56296.herokuapp.com/congrats"
+     }
+    }
+  };
+  console.log(data);
+  
+  xhttp.send(JSON.stringify(data));
+  
+  let name=data["name"].split(" ").join("+");
     }
   </script>
 </body>

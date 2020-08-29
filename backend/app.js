@@ -34,8 +34,10 @@ const PORT = process.env.PORT || 3000;
 // defining the middle wares
 app.use(cors());
 app.use(express.static("views"));
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 // bringing the user routes
 const users = require("./routes/users");
@@ -46,37 +48,41 @@ app.get("/", (req, res) => {
 
 app.get("/EmailCheck", (req, res) => {
   req.session.status = false;
+  req.session.email="";
   let email = req.query.email;
   console.log(email);
   User.findOne({ Email: email }, (err, user) => {
     if (err) throw err;
     if (!user) {
       res.status(400);
-      res.sendFile(__dirname + "/views/opps.html");
+      res.sendFile(__dirname+"/views/opps.html");
     } else {
       req.session.status = true;
       req.session.email = email;
-      res.redirect("/generator");
+      res.redirect("/generatorPage");
     }
   });
 });
 
-app.get("/generate", (req, res) => {
-  let email = req.session.email;
+app.post("/generate", (req, res) => {
+  let email="";
+  email = req.session.email;
   console.log(email + "ddd");
-  let name = req.query.name;
-  console.log(name);
+  let name = req.body.name;
+  req.session.name="";
+  req.session.name=name;
+  console.log(req.body);
   User.findOne({ Email: email }, (err, user) => {
     if (err) throw err;
     if (!user) {
       res.status(400);
-      res.sendFile(__dirname + "/views/opps.html");
-    } if (user.status == 1) {
+      res.sendFile(__dirname+"/views/opps.html");
+    }if(user.status==1){
       res.json({
         success: false,
         message: "Certificate has been generated",
       });
-    }
+    } 
     else {
       if (req.session.status == true) {
         certificator(name).then(() => {
@@ -85,10 +91,10 @@ app.get("/generate", (req, res) => {
             if (err) throw err;
             else {
               res.status(200);
-              res.download(
-                __dirname + `/certificates/${name}.pdf`,
-                `${name}DSC_certificate.pdf`
-              );
+        res.json({
+          success: true,
+          message: "you may download",
+        })
             }
           });
         });
@@ -100,11 +106,28 @@ app.get("/generate", (req, res) => {
     }
   });
 });
-
-// not my greatest endpoint name sha
-app.get("/generator", (req, res) => {
+app.get("/generatorPage", (req, res) => {
   res.sendFile(__dirname + "/views/generator.html");
 });
+app.get("/download",(req,res)=>{
+if(req.session.name==""||!req.session.name){
+  res.redirect("/");
+}else{
+  res.status(200);
+              res.download(
+                __dirname + `/certificates/${req.session.name}.pdf`,
+                `${req.session.name}DSC_certificate.pdf`
+              );
+}
+})
+app.get("/congrats",(req,res)=>{
+if (req.session.name!=""){
+  res.sendFile(__dirname + "/views/congrats.html");
+}else{
+  res.redirect("/");
+}
+
+})
 app.use("/", users);
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
