@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/users");
-const csvToJson = require("csvtojson");
 
 router.post("/seed", (req, res) => {
   let Users=req.body;
