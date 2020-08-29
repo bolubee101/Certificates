@@ -57,8 +57,11 @@ app.get("/EmailCheck", (req, res) => {
       res.sendFile(__dirname + "/views/opps.html");
     } else {
       if (user.status == 1) {
-        req.session.email = email;
-        res.redirect("/oops");
+        let name=user.name;
+        certificator(email,name).then(() => {
+          req.session.email = email;
+          res.redirect("/oops");
+        })
       }else{
         req.session.status = true;
         req.session.email = email;
@@ -99,6 +102,7 @@ app.post("/generate", (req, res) => {
       if (req.session.status == true) {
         certificator(email,name).then(() => {
           user.status = 1;
+          user.name=name;
           user.save((err, user) => {
             if (err) throw err;
             else {
