@@ -4,7 +4,7 @@
 <head>
   <title>DSC Unilag</title>
   <link href="./css/styles.css" type="text/css" rel="stylesheet" />
-  <meta rel="shortcut icon" type="image/x-icon" href="./image/icon.png"/>
+  <link rel="shortcut icon" type="image/x-icon" href="./Images/icon.png"/>
 </head>
 
 <body>
