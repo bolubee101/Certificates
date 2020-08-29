@@ -27,7 +27,7 @@ main {
 }
 
 main>section,
-section #email-input {
+section .form-input {
     display: flex;
     position: relative;
     justify-content: center;
@@ -93,7 +93,7 @@ img {
     z-index: -1;
 }
 
-section input[type=email] {
+section input[type=email], section input[type=text] {
     font-size: 1.5rem;
     padding: 2.0625rem;
 }
@@ -140,7 +140,7 @@ main>img {
     visibility: hidden;
 }
 
-section #email-input {
+section .form-input {
     width: 90%;
 }
 
@@ -190,7 +190,7 @@ section #email-input {
         width: 90%;
     }
 
-    section #email-input,
+    section .form-input,
     #button-id {
         width: 90%;
     }
