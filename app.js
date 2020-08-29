@@ -23,6 +23,8 @@ const app = express();
 app.use(
   session({
     secret: "secret-key",
+    maxAge  : new Date(Date.now() + 3600000),
+    expires : new Date(Date.now() + 3600000),
     resave: false,
     saveUninitialized: false,
   })
