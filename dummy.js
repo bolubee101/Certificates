@@ -15,32 +15,22 @@ db.once("open", function () {
 });
 let Users=[
     {
-        "First Name":"Mercy",
-        "Last Name":"Johnson",
         "Email":"mercyjohnson@gmail.com",
         "status":0
     },
     {
-        "First Name":"Idris",
-        "Last Name":"Elba",
         "Email":"idriselba@gmail.com",
         "status":0
     },
     {
-        "First Name":"John",
-        "Last Name":"Travolta",
         "Email":"johntravolta@gmail.com",
         "status":0
     },
     {
-        "First Name":"Segun",
-        "Last Name":"Arinze",
         "Email":"segunarinze@gmail.com",
         "status":0
     },
     {
-        "First Name":"Lord",
-        "Last Name":"Bee",
         "Email":"lordbee@gmail.com",
         "status":0
     }
