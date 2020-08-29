@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const config = require("./config/database");
 const User = require("./models/users");
 const certificator = require("./certificator");
+const session = require("express-session");
+const url = require("url");
 // connect to database
 mongoose.connect(config.database, {
   useNewUrlParser: true,
@@ -20,36 +22,63 @@ db.once("open", function () {
 
 // initialize app
 const app = express();
-
+app.use(
+  session({
+    secret: "secret-key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 const PORT = process.env.PORT || 3000;
 
 // defining the middle wares
 app.use(cors());
-
+app.use(express.static("views"));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // bringing the user routes
 const users = require("./routes/users");
 
-app.post("/generate", (req, res) => {
-  let name = req.body.name;
-  let email = req.body.email;
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
+
+app.get("/EmailCheck", (req, res) => {
+  req.session.status = false;
+  let email = req.query.email;
+  console.log(email);
   User.findOne({ Email: email }, (err, user) => {
     if (err) throw err;
     if (!user) {
       res.status(400);
+      res.sendFile(__dirname + "/views/opps.html");
+    } else {
+      req.session.status = true;
+      req.session.email = email;
+      res.redirect("/generator");
+    }
+  });
+});
+
+app.get("/generate", (req, res) => {
+  let email = req.session.email;
+  console.log(email + "ddd");
+  let name = req.query.name;
+  console.log(name);
+  User.findOne({ Email: email }, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res.status(400);
+      res.sendFile(__dirname + "/views/opps.html");
+    } if (user.status == 1) {
       res.json({
         success: false,
-        message: "User not found",
+        message: "Certificate has been generated",
       });
-    } else {
-      if (user.status == 1) {
-        res.status(400);
-        res.json({
-          success: false,
-          message: "certificate has been downloaded",
-        });
-      } else {
+    }
+    else {
+      if (req.session.status == true) {
         certificator(name).then(() => {
           user.status = 1;
           user.save((err, user) => {
@@ -58,14 +87,23 @@ app.post("/generate", (req, res) => {
               res.status(200);
               res.download(
                 __dirname + `/certificates/${name}.pdf`,
-                `${name}DSC_certificate`
+                `${name}DSC_certificate.pdf`
               );
             }
           });
         });
+      } else {
+        res.json({
+          success: false,
+        });
       }
     }
   });
+});
+
+// not my greatest endpoint name sha
+app.get("/generator", (req, res) => {
+  res.sendFile(__dirname + "/views/generator.html");
 });
 app.use("/", users);
 app.listen(PORT, () => {
