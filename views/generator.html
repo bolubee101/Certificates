@@ -79,7 +79,7 @@
           certificate
         </p>
 
-        <form action="https://fierce-bastion-56296.herokuapp.com/generate" class="form-input" method="POST" id="name">
+        <form action="/generate" class="form-input" method="POST" id="name">
           <input name="name" type="text" id="input-text" placeholder="Enter your name" minlength="1" maxlength="40" required/>
           <button id="button-id" type="button" onclick="return main()">
             Generate
@@ -104,18 +104,18 @@
        alert("Please input the name you want to appear on your certificate")
      }else{
       var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "https://fierce-bastion-56296.herokuapp.com/generate", true);
+        xhttp.open("POST", "/generate", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             if (JSON.parse(this.responseText).success == true) {
               window.open(
-                `https://fierce-bastion-56296.herokuapp.com/download`,
+                `/download`,
                 '_blank' // <- This is what makes it open in a new window.
               );
-              location.href = "https://fierce-bastion-56296.herokuapp.com/congrats"
+              location.href = "/congrats"
             } else {
-              location.href = "https://fierce-bastion-56296.herokuapp.com/oops"
+              location.href = "/oops"
             }
           }
         };
