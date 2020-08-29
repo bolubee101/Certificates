@@ -9,7 +9,7 @@ let main = () => {
     }
   }
   let email=data["email"]
-if (email=""){
+if (email==""){
   alert("Input a valid email address")
 }else{
   //document.write(name);
