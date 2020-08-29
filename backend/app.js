@@ -56,7 +56,7 @@ app.get("/EmailCheck", (req, res) => {
     } else {
       if (user.status == 1) {
         req.session.email = email;
-        res.redirect("/download");
+        res.redirect("/oops");
       }else{
         req.session.status = true;
         req.session.email = email;
