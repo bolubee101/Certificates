@@ -57,7 +57,7 @@
           Hi there! please enter the name you want to appear on your
           certificate
         </p>
-        <section id="name-input"></section>
+        
         <form action="https://fierce-bastion-56296.herokuapp.com/generate2" method="POST" id="name">
           <input name="name" type="text" id="input-text" placeholder="Enter your name" />
         </form>
@@ -79,8 +79,7 @@
         }
       }
       let name=data["name"].split(" ").join("+");
-      console.log(name);
-      //document.write(name);
+    
 
       window.open(
     `https://fierce-bastion-56296.herokuapp.com/generate/?name=${name}`,

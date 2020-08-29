@@ -25,7 +25,7 @@ main {
 }
 
 main>section,
-section #email-input {
+section #email-input,#name {
     display: flex;
     position: relative;
     justify-content: center;
@@ -87,7 +87,7 @@ img{
     bottom: 9rem;
     height: auto;
 }
-section input[type=email] {
+section input[type=email],input[type=name] {
     font-size: 1.5rem;
     padding: 2.0625rem;
 }
@@ -129,7 +129,7 @@ section svg {
     left: -7.3rem;
 }
 
-section #email-input {
+section #email-input,#name {
     width: 90%;
 }
 
@@ -160,7 +160,7 @@ section #email-input {
         width: 100%;
     }
     section #email-input,
-    #button-id {
+    #button-id,#name {
         width: 80%;
     }
 
