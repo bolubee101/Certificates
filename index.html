@@ -57,7 +57,7 @@
         <p id="second-text">Hi there! please enter your e-mail to get verified</p>
 
         <form action="/EmailCheck" method='POST' id="email-input">
-          <input type="email" id="input-text" placeholder="Enter your e-mail" name="email" autocomplete="email">
+          <input type="email" id="input-text" placeholder="Enter your e-mail" name="email" autocomplete="email" minlength=2 required>
         
           <button type="submit" id="button-id">Verify</button>
         </form>
