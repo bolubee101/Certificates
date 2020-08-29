@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
 /* 
     Defaults for home page
 */
@@ -21,6 +22,7 @@ body {
 }
 
 main {
+    position: relative;
     width: 100%;
 }
 
@@ -83,34 +85,34 @@ p {
 /* 
     main section edits
 */
-img{
+img {
     width: 35rem;
     position: absolute;
     bottom: 9rem;
     height: auto;
     z-index: -1;
 }
+
 section input[type=email] {
     font-size: 1.5rem;
     padding: 2.0625rem;
 }
 
 #button-id {
-    width: 15rem;
     margin-top: 1.5rem;
     text-align: center;
     transition: all 0.3s ease-in;
 }
 
-#button-id:hover{
+#button-id:hover {
     background-color: #5596ff;
 }
 
-#button-id:focus{
+#button-id:focus {
     background-color: #1c73ff;
 }
 
-#button-id:active{
+#button-id:active {
     background-color: #2a7cff;
 }
 
@@ -127,11 +129,15 @@ section>div p {
     margin: 0.5rem 0rem 3.2rem 0rem;
 }
 
-section svg {
+svg {
     position: absolute;
-    left: -11.2rem;
-    height: 140rem;
-    width: 27.9%;
+    left: -4rem;
+    height: 115rem;
+    width: 10.9%;
+}
+
+main>img {
+    visibility: hidden;
 }
 
 section #email-input {
@@ -139,35 +145,51 @@ section #email-input {
 }
 
 @media screen and (min-width: 75rem) {
-    
-    img{
+
+    img {
         bottom: 12rem;
     }
-    
-    main{
+
+    main {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    main section{
+    main section {
         width: 80%;
     }
-    section svg{
-        left: -16rem;
+
+    main svg {
         width: initial;
         height: initial;
     }
+
+    main svg:nth-child(1) {
+        visibility: hidden;
+    }
+
+    main>img {
+        visibility: visible;
+        left: -5.8rem;
+        top: 0;
+        width: 8.7rem;
+        z-index: -1;
+        height: auto;
+    }
+
     h1 {
         font-size: 3rem;
     }
-    
+
     p {
         font-size: 2rem;
     }
-    section input{
+
+    section input {
         width: 90%;
     }
+
     section #email-input,
     #button-id {
         width: 90%;
