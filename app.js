@@ -6,7 +6,7 @@ const config = require("./config/database");
 const User = require("./models/users");
 const certificator = require("./certificator");
 const session = require("express-session");
-//const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session);
 // connect to database
 mongoose.connect(config.database, {
   useNewUrlParser: true,
@@ -26,6 +26,7 @@ app.use(
     secret: "secret-key",
     maxAge  : new Date(Date.now() + 1800000),
     expires : new Date(Date.now() + 1800000),
+    store: new MongoStore({ mongooseConnection: db }),
     resave: false,
     saveUninitialized: false,
   })
