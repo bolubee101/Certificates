@@ -6,6 +6,7 @@ const config = require("./config/database");
 const User = require("./models/users");
 const certificator = require("./certificator");
 const session = require("express-session");
+const dummy=require("./dummy")
 const MongoStore = require('connect-mongo')(session);
 const csvtojson = require('csvtojson');
 const multer = require('multer');
@@ -174,6 +175,13 @@ app.post("/upload-csv", upload.single('FileUpload'), (req, res, next) => {
     .then((result) => {
       res.send(result);
     })
+})
+
+app.get("/dummy",(req,res)=>{
+dummy().then(()=>{
+  res.send("done seeding")
+})
+
 })
 
 app.use("/", users);
