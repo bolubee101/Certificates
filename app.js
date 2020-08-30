@@ -70,7 +70,6 @@ app.get("/EmailCheck", (req, res) => {
   User.findOne({ Email: email }, (err, user) => {
     if (err) throw err;
     if (!user) {
-      res.status(400);
       res.sendFile(__dirname + "/views/opps.html");
     } else {
       if (user.status == 1) {
@@ -107,7 +106,6 @@ app.post("/generate", (req, res) => {
   User.findOne({ Email: email }, (err, user) => {
     if (err) throw err;
     if (!user) {
-      res.status(400);
       res.sendFile(__dirname + "/views/opps.html");
     }
     if (user.status == 1) {
