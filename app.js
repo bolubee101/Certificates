@@ -8,7 +8,7 @@ const certificator = require("./certificator");
 const session = require("express-session");
 const dummy = require("./dummy")
 const MongoStore = require('connect-mongo')(session);
-const csvtojson = require('csvtojson');
+const csv=require("csvtojson");
 const multer = require('multer');
 const path = require('path');
 
@@ -23,6 +23,18 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
   console.log("mongodb connection established");
 });
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname);
+  },
+  filename: function (req, file, cb) {
+    cb(null, "data" + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage }).single('FileUpload');
+
 
 // initialize app
 const app = express();
@@ -147,41 +159,35 @@ app.get("/congrats", (req, res) => {
   }
 });
 
-app.get("/oops",(req,res)=>{
-  res.sendFile(__dirname+"/views/opps2.html");
-});
-
 app.get("/upload-csv", (req, res) => {
   res.sendFile(__dirname + "/views/csv-upload.html");
 });
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      // you specified an invalid directory. The mutler docs said that the directory must exist. anyway, leave it here in the root dir.
-        cb(null, __dirname);
-    },
-
-    // By default, multer removes file extensions so let's add them back also, I removed the name
-    filename: function(req, file, cb) {
-      // also, I changed the name to something specific. no need to start decoding date object and checking the submission form for field name
-        //data.csv
-        cb(null, "data" + path.extname(file.originalname));
+app.post("/upload-csv", (req, res) => {
+  upload(req,res,function (err){
+    if (err instanceof multer.MulterError){
+      console.log("multer error")
+      throw err
+    }else if(err){
+      throw err
+    }else{
+      const csvFilePath=__dirname+'/data.csv'
+      csv()
+    .fromFile(csvFilePath)
+    .then((Users)=>{
+      User.collection.insertMany(Users, (err, docs) => {
+        if (err) res.send("error seeding");
+        else res.send("done seeding");
+    });
+    })
     }
-});
-const upload = multer({ storage: storage });
 
-// please finish up here...I want to sleep. Also, move all the multer function and declaration to the top
-app.post("/upload-csv", upload.single('FileUpload'), (req, res, next) => {
-  // res.send(req.file);
-  // res.send(__dirname + "\\" + req.file.path);
-  //console.log(req);
-  //csvtojson(__dirname + "\\" + req.file.path)
-   // .fromFile()
-    //.then((result) => {
-     // res.send(result);
-    //})
+  })
 })
 
+app.get("/oops",(req,res)=>{
+  res.sendFile(__dirname+"/views/opps2.html");
+});
 app.get("/dummy", (req, res) => {
 // if error, possible cause - Database does not exist
 
