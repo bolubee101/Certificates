@@ -6,7 +6,7 @@ const config = require("./config/database");
 const User = require("./models/users");
 const certificator = require("./certificator");
 const session = require("express-session");
-const dummy=require("./dummy")
+const dummy = require("./dummy")
 const MongoStore = require('connect-mongo')(session);
 // connect to database
 mongoose.connect(config.database, {
@@ -58,12 +58,12 @@ app.get("/EmailCheck", (req, res) => {
       res.sendFile(__dirname + "/views/opps.html");
     } else {
       if (user.status == 1) {
-        let name=user.name;
-        certificator(email,name).then(() => {
+        let name = user.name;
+        certificator(email, name).then(() => {
           req.session.email = email;
           res.redirect("/oops");
         })
-      }else{
+      } else {
         req.session.status = true;
         req.session.email = email;
         res.redirect("/generatorPage");
@@ -101,9 +101,9 @@ app.post("/generate", (req, res) => {
       });
     } else {
       if (req.session.status == true) {
-        certificator(email,name).then(() => {
+        certificator(email, name).then(() => {
           user.status = 1;
-          user.name=name;
+          user.name = name;
           user.save((err, user) => {
             if (err) throw err;
             else {
@@ -143,14 +143,22 @@ app.get("/congrats", (req, res) => {
   }
 });
 
-app.get("/oops",(req,res)=>{
-  res.sendFile(__dirname+"/views/opps2.html");
+app.get("/oops", (req, res) => {
+  res.sendFile(__dirname + "/views/opps2.html");
 })
 
-app.get("/dummy",(req,res)=>{
-dummy().then(()=>{
-  res.send("done seeding")
-})
+app.get("/dummy", (req, res) => {
+  db.dropCollection(
+    "users",
+    function (err, result) {
+      if (err) res.send("error in dummy seeding");
+      else {
+        dummy().then(() => {
+          res.send("done seeding")
+        })
+      }
+    }
+  );
 
 })
 
