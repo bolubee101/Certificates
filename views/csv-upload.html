@@ -16,8 +16,8 @@
             <img src="Images/hero-dsc-about-unilag.png" alt="dsc logo" />
             <div>
                 <h1>Upload CSV file here</h1>
-                <form class="form-input">
-                    <input type="file" name="File Upload" id="csv" accept=".csv" />
+                <form class="form-input" action="/upload-csv" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="FileUpload" id="csv" accept=".csv" />
                     <button class="send-button" id="" onclick="">Send</button>
                 </form>
 
