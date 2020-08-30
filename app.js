@@ -6,6 +6,7 @@ const config = require("./config/database");
 const User = require("./models/users");
 const certificator = require("./certificator");
 const session = require("express-session");
+const dummy=require("./dummy")
 const MongoStore = require('connect-mongo')(session);
 // connect to database
 mongoose.connect(config.database, {
@@ -144,6 +145,13 @@ app.get("/congrats", (req, res) => {
 
 app.get("/oops",(req,res)=>{
   res.sendFile(__dirname+"/views/opps2.html");
+})
+
+app.get("/dummy",(req,res)=>{
+dummy().then(()=>{
+  res.send("done seeding")
+})
+
 })
 
 app.use("/", users);
