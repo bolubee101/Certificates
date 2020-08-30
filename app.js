@@ -7,6 +7,9 @@ const User = require("./models/users");
 const certificator = require("./certificator");
 const session = require("express-session");
 const MongoStore = require('connect-mongo')(session);
+const csvtojson = require('csvtojson');
+const multer = require('multer');
+const path = require('path');
 // connect to database
 mongoose.connect(config.database, {
   useNewUrlParser: true,
@@ -144,6 +147,33 @@ app.get("/congrats", (req, res) => {
 
 app.get("/oops",(req,res)=>{
   res.sendFile(__dirname+"/views/opps2.html");
+});
+
+app.get("/upload-csv", (req, res) => {
+  res.sendFile(__dirname + "/views/csv-upload.html");
+});
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/csv/');
+    },
+
+    // By default, multer removes file extensions so let's add them back
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+app.post("/upload-csv", upload.single('FileUpload'), (req, res, next) => {
+  // res.send(req.file);
+  // res.send(__dirname + "\\" + req.file.path);
+  console.log(req);
+  csvtojson(__dirname + "\\" + req.file.path)
+    .fromFile()
+    .then((result) => {
+      res.send(result);
+    })
 })
 
 app.use("/", users);
