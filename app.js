@@ -148,10 +148,16 @@ app.get("/oops", (req, res) => {
 })
 
 app.get("/dummy", (req, res) => {
+// if error, possible cause - Database does not exist
+
   db.dropCollection(
     "users",
     function (err, result) {
-      if (err) res.send("error in dummy seeding");
+      if (err){
+        dummy().then(() => {
+          res.send("done seeding")
+        })
+      }
       else {
         dummy().then(() => {
           res.send("done seeding")
