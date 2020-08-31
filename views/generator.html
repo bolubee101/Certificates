@@ -103,8 +103,13 @@
      if(data["name"]==""){
        alert("Please input the name you want to appear on your certificate")
      }else{
-       data["name"]=data["name"].replace(/\s+/g," ");
-       // add code to check if first character is a white space and replace, and check if last character is also a white space and replace
+      data["name"]=data["name"].replace(/\s+/g," ");
+       if(data["name"].charAt(0)===" "){
+         data["name"].split("").shift().join("");
+       }
+       if(data["name"].charAt(data["name"].length-1)===" "){
+         data["name"].split("").pop().join("");
+       }
       var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "/generate", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
