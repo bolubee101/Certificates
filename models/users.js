@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   status: Number
 });
 
-let User = mongoose.model("User", UserSchema);
+let User = mongoose.model("hero", UserSchema);
 
 module.exports =User
 
