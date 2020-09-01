@@ -7,7 +7,7 @@ let main = (email,name) => {
     let length = name.length;
     let x;
     let font;
-    if (length < 20) {
+    if (length <= 20) {
       x = 503 + ((28 - length) / 2) * 18.46;
       console.log(x);
       font = 30;
@@ -16,7 +16,7 @@ let main = (email,name) => {
       x = 503 + ((33.6 - length) / 2) * 15.39;
       font = 25;
     }
-    if (length > 25) {
+    if (length >= 25) {
       x = 528 + ((33.6 - length) / 2) * 15.39;
       font = 25;
     }
