@@ -12,8 +12,9 @@ const csv=require("csvtojson");
 const multer = require('multer');
 const path = require('path');
 
+let configuration=process.env.DATABASE||config.database
 // connect to database
-mongoose.connect(config.database, {
+mongoose.connect(configuration, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
