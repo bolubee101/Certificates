@@ -13,7 +13,8 @@ const multer = require('multer');
 const path = require('path');
 
 // connect to database
-mongoose.connect(config.database, {
+let configuration=process.env.DATABASE||config.database
+mongoose.connect(configuration, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
