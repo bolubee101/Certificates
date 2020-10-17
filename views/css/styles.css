@@ -24,6 +24,7 @@ body {
 main {
     position: relative;
     width: 100%;
+    align-self: center;
 }
 
 main>section,

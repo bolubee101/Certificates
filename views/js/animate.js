@@ -2,7 +2,7 @@
 // Typing animation (sort of)
 let sunkanmi_temp = 0;
 const speed = 100;
-const text = 'Thank you for all your efforts and work as a member of DSC Unilag!';
+const text = 'Thank you for all your efforts and hard work!';
 const paragraph = document.querySelector("#thanks");
 
 

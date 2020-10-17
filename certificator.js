@@ -1,38 +1,24 @@
 var fs = require("fs");
 var PDFDocument = require("pdfkit");
-//module.exports =
 
 let main = (email,name) => {
   return (myFirstPromise = new Promise((resolve, reject) => {
-    let length = name.length;
-    let x;
-    let font;
-    if (length < 20) {
-      x = 503 + ((28 - length) / 2) * 18.46;
-      console.log(x);
-      font = 30;
-    }
-    if (length > 20) {
-      x = 503 + ((33.6 - length) / 2) * 15.39;
-      font = 25;
-    }
-    if (length > 25) {
-      x = 528 + ((33.6 - length) / 2) * 15.39;
-      font = 25;
-    }
     var pdf = new PDFDocument({
       size: "A3",
       compress: false,
       layout: "potrait",
     });
 
-    pdf.image("image/DSC.png", 0, 0);
+    pdf.image("image/cert.jpg", 0, 0);
 
     // Write stuff into PDF
-    pdf.font("font/Product Sans Bold.ttf");
+    pdf.font("font/Aulyars.otf");
 
-    pdf.fontSize(font);
-    pdf.text(name.toUpperCase(), x, 300);
+    pdf.fontSize(37);
+    pdf.text(name.toUpperCase(), 100,450, {
+      width:1000,
+      align:"center"
+    });
 
     // Stream contents to a file
     pdf

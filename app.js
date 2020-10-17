@@ -41,7 +41,7 @@ const upload = multer({ storage: storage }).single('FileUpload');
 const app = express();
 app.use(
   session({
-    secret: "secret-key",
+    secret: "secret-key"||process.env.SECRET,
     store: new MongoStore({ mongooseConnection: db }),
     resave: false,
     saveUninitialized: false,
@@ -146,7 +146,7 @@ app.get("/download", (req, res) => {
     res.status(200);
     res.download(
       __dirname + `/certificates/${req.session.email}.pdf`,
-      `DSC_certificate.pdf`
+      `COWLSO_certificate.pdf`
     );
   }
 });
@@ -174,8 +174,12 @@ app.post("/upload-csv", (req, res) => {
       csv()
     .fromFile(csvFilePath)
     .then((Users)=>{
+      for(i in Users){
+        Users[i].status=0;
+      }
       User.collection.insertMany(Users, (err, docs) => {
-        if (err) res.send("error seeding");
+        if (err) {res.send("error seeding");
+      throw err;}
         else res.send("done seeding");
     });
     })
